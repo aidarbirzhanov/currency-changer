@@ -6,6 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/currency-changer/',
   plugins: [
     vue(),
     vueDevTools(),
@@ -16,6 +17,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000
+    port: 3000,
+    host: true
   }
 })

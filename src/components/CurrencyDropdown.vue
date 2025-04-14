@@ -25,24 +25,18 @@ useClickOutside(dropdownRef, () => {
 </script>
 
 <template>
-  <div
-    class="currency-selector"
-    @click="toggleDropdown">
+  <div class="currency-selector" @click="toggleDropdown">
     <div class="selected">
       {{ currencyStore.baseCurrency }}
-      <span
-        class="arrow"
-        :class="{ open: isDropdownOpen }"/>
+      <span class="arrow" :class="{ open: isDropdownOpen }" />
     </div>
-    <div
-      v-if="isDropdownOpen"
-      ref="dropdownRef"
-      class="dropdown">
+    <div v-if="isDropdownOpen" ref="dropdownRef" class="dropdown">
       <div
         v-for="currency in currencies"
         :key="currency"
         @click.stop="selectCurrency(currency)"
-        class="dropdown-item">
+        class="dropdown-item"
+      >
         {{ currency }}
       </div>
     </div>
@@ -59,7 +53,7 @@ useClickOutside(dropdownRef, () => {
     display: flex;
     align-items: center;
     padding: 8px 12px;
-    color:black;
+    color: black;
     border: 1px solid #ccc;
     border-radius: 6px;
     background-color: #f9f9f9;
@@ -90,7 +84,7 @@ useClickOutside(dropdownRef, () => {
     right: 0;
     background: #fff;
     border: 1px solid #ddd;
-    color:black;
+    color: black;
     border-radius: 6px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 100;

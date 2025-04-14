@@ -6,7 +6,7 @@ export const useCurrencyStore = defineStore('currency', {
     baseCurrency: 'RUB',
     rates: {} as Record<string, number>,
     loading: false,
-    error: null as string | null
+    error: null as string | null,
   }),
 
   actions: {
@@ -16,7 +16,7 @@ export const useCurrencyStore = defineStore('currency', {
         const response = await axios.get('https://status.neuralgeneration.com/api/currency')
         this.rates = response.data
         this.error = null
-      } catch (err) {
+      } catch {
         this.error = 'Ошибка загрузки курсов валют'
       } finally {
         this.loading = false
@@ -25,7 +25,7 @@ export const useCurrencyStore = defineStore('currency', {
 
     setBaseCurrency(currency: string) {
       this.baseCurrency = currency
-    }
+    },
   },
 
   getters: {
@@ -38,12 +38,12 @@ export const useCurrencyStore = defineStore('currency', {
         if (from === base) {
           result.push({
             currency: to.toUpperCase(),
-            rate: value
+            rate: value,
           })
         }
       })
 
       return result
-    }
-  }
+    },
+  },
 })

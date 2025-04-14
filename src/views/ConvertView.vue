@@ -20,7 +20,7 @@ const allCurrencies = computed(() => {
   return Array.from(set).sort()
 })
 
-const  getRate = (from: string, to: string): number | null => {
+const getRate = (from: string, to: string): number | null => {
   const direct = `${from.toLowerCase()}-${to.toLowerCase()}`
   const inverse = `${to.toLowerCase()}-${from.toLowerCase()}`
   if (currencyStore.rates[direct]) {
@@ -40,7 +40,7 @@ watch([amountFrom, currencyFrom, currencyTo], () => {
   amountTo.value = convert(amountFrom.value, currencyFrom.value, currencyTo.value)
 })
 
-watch([amountTo, currencyFrom, currencyTo], ([toVal], [oldToVal]) => {
+watch([amountTo, currencyFrom, currencyTo], ([toVal], []) => {
   if (document.activeElement === document.querySelector('.input-to')) {
     amountFrom.value = convert(toVal, currencyTo.value, currencyFrom.value)
   }
@@ -56,7 +56,7 @@ watch(
         currencyFrom.value = oldTo
       }
     }
-  }
+  },
 )
 
 onMounted(() => {
@@ -72,18 +72,11 @@ onMounted(() => {
 
 <template>
   <main class="converter-container">
-    <h2 class="title">
-      Конвертер валют
-    </h2>
+    <h2 class="title">Конвертер валют</h2>
 
     <div class="converter-row">
-      <select
-        v-model="currencyFrom"
-        class="dropdown">
-        <option
-          v-for="cur in allCurrencies"
-          :key="cur"
-          :value="cur">
+      <select v-model="currencyFrom" class="dropdown">
+        <option v-for="cur in allCurrencies" :key="cur" :value="cur">
           {{ cur }}
         </option>
       </select>
@@ -92,17 +85,13 @@ onMounted(() => {
         type="number"
         min="0"
         class="input"
-        placeholder="Введите сумму" />
+        placeholder="Введите сумму"
+      />
     </div>
 
     <div class="converter-row">
-      <select
-        v-model="currencyTo"
-        class="dropdown">
-        <option
-          v-for="cur in allCurrencies"
-          :key="cur"
-          :value="cur">
+      <select v-model="currencyTo" class="dropdown">
+        <option v-for="cur in allCurrencies" :key="cur" :value="cur">
           {{ cur }}
         </option>
       </select>
@@ -111,7 +100,8 @@ onMounted(() => {
         type="number"
         min="0"
         class="input input-to"
-        placeholder="Результат" />
+        placeholder="Результат"
+      />
     </div>
   </main>
 </template>

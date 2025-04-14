@@ -8,9 +8,8 @@ interface ILink {
 
 const links: ILink[] = [
   { link: '/', title: 'Главная' },
-  { link: '/convert', title: 'Конвертация' }
+  { link: '/convert', title: 'Конвертация' },
 ]
-
 </script>
 
 <template>
@@ -22,11 +21,12 @@ const links: ILink[] = [
           :key="index"
           :to="link.link"
           active-class="active"
-          class="nav-link">
+          class="nav-link"
+        >
           {{ link.title }}
         </RouterLink>
       </nav>
-      <AppDropdown/>
+      <AppDropdown />
     </div>
   </header>
 </template>

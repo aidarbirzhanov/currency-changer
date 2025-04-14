@@ -18,27 +18,15 @@ onMounted(() => {
       </span>
     </h1>
 
-    <div
-      v-if="currencyStore.loading"
-      class="info loading">
-      Загрузка курсов...
-    </div>
-    <div
-      v-else-if="currencyStore.error"
-      class="info error">
+    <div v-if="currencyStore.loading" class="info loading">Загрузка курсов...</div>
+    <div v-else-if="currencyStore.error" class="info error">
       {{ currencyStore.error }}
     </div>
 
     <ul v-else class="rates-grid">
-      <li
-        v-for="item in currencyStore.convertedRates"
-        :key="item.currency"
-        class="rate-card">
-        <div class="label">
-          1 {{ currencyStore.baseCurrency }} =
-        </div>
-        <div
-          class="value">
+      <li v-for="item in currencyStore.convertedRates" :key="item.currency" class="rate-card">
+        <div class="label">1 {{ currencyStore.baseCurrency }} =</div>
+        <div class="value">
           {{ item.rate }}
           <span class="currency">
             {{ item.currency }}

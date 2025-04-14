@@ -1,10 +1,7 @@
 import type { Ref } from 'vue'
 import { onBeforeUnmount, onMounted } from 'vue'
 
-export const useClickOutside = <T extends HTMLElement>(
-  ref: Ref<T | null>,
-  cb: () => void
-) => {
+export const useClickOutside = <T extends HTMLElement>(ref: Ref<T | null>, cb: () => void) => {
   const clickHandler = (event: MouseEvent | TouchEvent) => {
     if (ref.value && !ref.value.contains(event.target as Node)) {
       cb()
