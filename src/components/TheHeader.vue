@@ -16,19 +16,16 @@ const links: ILink[] = [
 <template>
   <header class="the-header">
     <div class="header__inner container">
-      <!-- Навигация -->
       <nav class="nav-links">
         <RouterLink
           v-for="(link, index) in links"
           :key="index"
           :to="link.link"
-          class="nav-link"
-        >
+          active-class="active"
+          class="nav-link">
           {{ link.title }}
         </RouterLink>
       </nav>
-
-      <!-- Dropdown -->
       <AppDropdown/>
     </div>
   </header>
@@ -57,10 +54,6 @@ const links: ILink[] = [
       position: relative;
       transition: color 0.3s;
 
-      &:hover {
-        color: #007bff;
-      }
-
       &::after {
         content: '';
         position: absolute;
@@ -72,8 +65,20 @@ const links: ILink[] = [
         transition: width 0.3s;
       }
 
-      &:hover::after {
-        width: 100%;
+      &:hover {
+        color: #007bff;
+
+        &::after {
+          width: 100%;
+        }
+      }
+
+      &.active {
+        color: #007bff;
+
+        &::after {
+          width: 100%;
+        }
       }
     }
   }

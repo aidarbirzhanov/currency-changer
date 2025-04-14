@@ -12,20 +12,38 @@ onMounted(() => {
 <template>
   <main class="currency-container">
     <h1 class="title">
-      Курсы по отношению к <span class="base">{{ currencyStore.baseCurrency }}</span>
+      Курсы по отношению к
+      <span class="base">
+        {{ currencyStore.baseCurrency }}
+      </span>
     </h1>
 
-    <div v-if="currencyStore.loading" class="info loading">Загрузка курсов...</div>
-    <div v-else-if="currencyStore.error" class="info error">{{ currencyStore.error }}</div>
+    <div
+      v-if="currencyStore.loading"
+      class="info loading">
+      Загрузка курсов...
+    </div>
+    <div
+      v-else-if="currencyStore.error"
+      class="info error">
+      {{ currencyStore.error }}
+    </div>
 
     <ul v-else class="rates-grid">
       <li
         v-for="item in currencyStore.convertedRates"
         :key="item.currency"
-        class="rate-card"
-      >
-        <div class="label">1 {{ currencyStore.baseCurrency }} =</div>
-        <div class="value">{{ item.rate }} <span class="currency">{{ item.currency }}</span></div>
+        class="rate-card">
+        <div class="label">
+          1 {{ currencyStore.baseCurrency }} =
+        </div>
+        <div
+          class="value">
+          {{ item.rate }}
+          <span class="currency">
+            {{ item.currency }}
+          </span>
+        </div>
       </li>
     </ul>
   </main>
@@ -36,7 +54,6 @@ onMounted(() => {
   max-width: 960px;
   margin: 0 auto;
   padding: 40px 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
 }
 
